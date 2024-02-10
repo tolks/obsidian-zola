@@ -6,7 +6,6 @@ pip install python-slugify
 echo "netlify.toml" >>__obsidian/.gitignore
 
 # Sync Zola template contents
-rm -rf __site/build
 rsync -a __site/zola/ __site/build
 rsync -a __site/content/ __site/build/content
 

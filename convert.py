@@ -96,11 +96,6 @@ if __name__ == "__main__":
     
 
         if doc_path.is_file & doc_path.is_md:
-            print ("Parsing file: " + doc_path.page_title)
-            print (" file old_path" + str(doc_path.old_path))
-            print (" file old_rel_path" + str(doc_path.old_rel_path))
-            print (" file new_path" + str(doc_path.new_path))
-            print (" file new_rel_path" + str(doc_path.new_rel_path))   
             content = doc_path.content
 
             # add title
