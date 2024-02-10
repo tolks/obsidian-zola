@@ -20,6 +20,13 @@
         <h1>{{ page.title | safe }}</h1>
         {% if page.extra.lead %}<p class="lead">{{ page.extra.lead | safe }}</p>{% endif %}
         {{ page.content | safe }}
+        {% if page.lower %}
+          <a class="btn btn-sm " href="/docs/{{page.lower.title | safe }}">Previous</a>
+        {% endif %}
+        {% if page.higher %}
+          <a class="btn btn-sm " href="/docs/{{page.higher.title | safe }}">Next</a>
+        {% endif %}        
+
         {% if config.extra.edit_page %}
           {{ macros_edit_page::docs_edit_page(current_path=current_path) }}
         {% endif %}
