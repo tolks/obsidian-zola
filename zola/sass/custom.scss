@@ -23,3 +23,11 @@
 	overflow: hidden;
 	transition: height 0.5s ease-out;
 }
+
+.docs-link.active{
+	background-color: lightblue;
+}
+	
+body.dark .docs-link.active{
+	background-color: darkgreen;
+}
