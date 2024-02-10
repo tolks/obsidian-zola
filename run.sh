@@ -18,7 +18,7 @@ else
 fi
 
 # Run conversion script
-python __site/convert.py
+python3 __site/convert.py
 
 # Build Zola site
 zola --root __site/build build --output-dir public

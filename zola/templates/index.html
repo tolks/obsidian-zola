@@ -22,24 +22,21 @@
 
 {% block content %}
 
-<div class="home">
-  <div class="home-background">
-    <div class="wrap container" role="document">
-      <div class="content">
-        <section class="section container-fluid mt-n3 pb-3">
-          <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-              <h1 class="mt-0">{{ section.title | default(value="Modern Documentation Theme") | safe }}</h1>
-            </div>
-            <div class="col-lg-9 col-xl-8 text-center">
-              <p class="lead">{{ section.extra.lead | default(value="Please start setting config.toml and adding your content.") | safe }}</p>
-              <a class="btn btn-primary btn-lg px-4 mb-2" href="{{ get_url(path=section.extra.url | default(value="/")) | safe }}" role="button">{{ section.extra.url_button | default(value="Read My Brain") | safe }}</a>
-            </div>
-          </div>
-        </section>
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xxl-8">
+        <article>
+          {{ section.content | safe }}
+        </article>
+        {% if section.extra.next_entry_url %}      
+          <a class="btn btn-primary btn-lg px-4 mb-2" href="{{ get_url(path=section.extra.next_entry_url | default(value="/")) | safe }}">Read More Entries</a>
+        {% endif %}
+
       </div>
     </div>
   </div>
+</div>
 
 {% if config.extra.home_graph %}
   <div id="graph"></div>

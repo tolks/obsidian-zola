@@ -7,7 +7,7 @@
 					<h3 class="collapsible-section">{{ index.title }}</h3>
 					<div class="collapsible-wrapper">
 						<ul class="list-unstyled">
-						{% for page in index.pages %}                           
+						{% for page in index.pages | reverse  %}                           
 								<li><a class="docs-link{% if current_url == page.permalink %} active{% endif %}" href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
 						{% endfor %}
 						</ul>
@@ -20,7 +20,7 @@
 							<h3 class="collapsible-section">{{ subsection.extra.sidebar | safe }}</h3>
 							<div class="collapsible-wrapper">
 								<ul class="list-unstyled">
-								{% for page in subsection.pages %}                           
+								{% for page in subsection.pages | reverse %}                           
 										<li><a class="docs-link{% if current_url == page.permalink %} active{% endif %}" href="{{ page.permalink | safe }}">{{ page.title | safe }}</a></li>
 								{% endfor %}
 								</ul>
@@ -33,20 +33,20 @@
 									<h4 class="collapsible-section">{{ subsubsection.extra.sidebar | safe }}</h4>
 									<div class="collapsible-wrapper">
 										<ul class="list-unstyled">
-										{% for page in subsubsection.pages %}                           
+										{% for page in subsubsection.pages | reverse %}                           
 												<li><a class="docs-link{% if current_url == page.permalink %} active{% endif %}" href="{{ page.permalink | safe }}">{{ page.title | safe }}</a></li>
 										{% endfor %}
 										</ul>
 									</div>
 							{% endif %}
 							{% if subsubsection.subsections %}
-								{% for s in subsubsection.subsections %}
+								{% for s in subsubsection.subsections | reverse %}
 								{% set subsubsubsection = get_section(path=s) %}
 									{% if subsubsubsection.pages %}
 											<h5 class="collapsible-section">{{ subsubsubsection.extra.sidebar | safe }}</h5>
 											<div class="collapsible-wrapper">
 												<ul class="list-unstyled">
-												{% for page in subsubsubsection.pages %}                           
+												{% for page in subsubsubsection.pages | reverse %}                           
 														<li><a class="docs-link{% if current_url == page.permalink %} active{% endif %}" href="{{ page.permalink | safe }}">{{ page.title | safe }}</a></li>
 												{% endfor %}
 												</ul>

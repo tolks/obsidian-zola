@@ -5,7 +5,6 @@ import re
 import shutil
 from dataclasses import dataclass
 from datetime import datetime
-from distutils.util import strtobool
 from os import environ
 from pathlib import Path
 from pprint import PrettyPrinter
@@ -339,7 +338,9 @@ class Settings:
     def is_true(cls, key: str) -> bool:
         """Returns whether an option's string value is true."""
         val = cls.options[key]
-        return bool(strtobool(val)) if val else False
+        if val.lower() in ("y", "yes", "on", "1", "true", "t"):
+            return True
+        return False
 
     @classmethod
     def parse_env(cls):

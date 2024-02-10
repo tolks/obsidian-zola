@@ -80,6 +80,58 @@ if __name__ == "__main__":
             doc_path.write_to("_index.md", "\n".join(content))
             print(f"Found section: {doc_path.new_rel_path}")
 
+
+    latest_count = 0;
+    index_parsed_lines: List[str] = []
+    all_paths.reverse()
+    next_entry_title = "/"
+    for path in all_paths:
+
+        print (str(path))
+        doc_path = DocPath(path)
+            # case when there are 5 or less  entries are not hanled
+        if (latest_count == 6):
+            next_entry_title = doc_path.page_title
+            break;
+    
+
+        if doc_path.is_file & doc_path.is_md:
+            print ("Parsing file: " + doc_path.page_title)
+            print (" file old_path" + str(doc_path.old_path))
+            print (" file old_rel_path" + str(doc_path.old_rel_path))
+            print (" file new_path" + str(doc_path.new_path))
+            print (" file new_rel_path" + str(doc_path.new_rel_path))   
+            content = doc_path.content
+
+            # add title
+            index_parsed_lines.append("## " + doc_path.page_title + '\n')
+            for line in content:
+                parsed_line, linked = DocLink.parse(line, doc_path)
+
+                # Fix LaTEX new lines
+                parsed_line = re.sub(r"\\\\\s*$", r"\\\\\\\\", parsed_line)
+
+                index_parsed_lines.append(parsed_line)   
+            latest_count += 1 
+
+
+
+
+    content = [
+                    "---",
+                    f"title: {Settings.options['LANDING_TITLE']}",
+                    f"sort_by: {Settings.options['SORT_BY']}",
+
+                    f"extra: ",
+                    f"  next_entry_url: \"/docs/" + next_entry_title + "\"",
+                    "---",
+                    # To add last line-break
+                    "",
+                ]
+    index = site_dir / "content/_index.md"
+    index.write_text("".join(["\n".join(content), *index_parsed_lines]))
+
+
     pp(nodes)
     pp(edges)
     parse_graph(nodes, edges)
