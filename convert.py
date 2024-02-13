@@ -84,14 +84,14 @@ if __name__ == "__main__":
     latest_count = 0;
     index_parsed_lines: List[str] = []
     all_paths.reverse()
-    next_entry_title = "/"
+    next_entry_url = "/"
     for path in all_paths:
 
         print (str(path))
         doc_path = DocPath(path)
             # case when there are 5 or less  entries are not hanled
         if (latest_count == 6):
-            next_entry_title = doc_path.page_title
+            next_entry_url = doc_path.abs_url
             break;
     
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
                     f"sort_by: {Settings.options['SORT_BY']}",
 
                     f"extra: ",
-                    f"  next_entry_url: \"/docs/" + next_entry_title + "\"",
+                    f"  next_entry_url: \"" + next_entry_url + "\"",
                     "---",
                     # To add last line-break
                     "",

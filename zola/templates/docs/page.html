@@ -21,10 +21,10 @@
         {% if page.extra.lead %}<p class="lead">{{ page.extra.lead | safe }}</p>{% endif %}
         {{ page.content | safe }}
         {% if page.lower %}
-          <a class="btn btn-sm " href="/docs/{{page.lower.title | safe }}">Previous</a>
+          <a class="btn btn-sm " href="{{page.lower.permalink | safe }}">Previous</a>
         {% endif %}
         {% if page.higher %}
-          <a class="btn btn-sm " href="/docs/{{page.higher.title | safe }}">Next</a>
+          <a class="btn btn-sm " href="{{page.higher.permalink | safe }}">Next</a>
         {% endif %}        
 
         {% if config.extra.edit_page %}
